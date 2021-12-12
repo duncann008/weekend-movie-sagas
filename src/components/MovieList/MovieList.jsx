@@ -28,16 +28,15 @@ function MovieList() {
     return (
         <main>
             <h1>Movie List</h1>
-            <button onClick={goToForm}>Add Movie</button>
+            <button onClick={goToForm}>+ Add Movie</button>
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div className="movieListDiv" key={movie.id} >
+                        <div className="movieListDiv" key={movie.id} onClick={() => routeToDetails(movie.id)}>
                             <h3>{movie.title}</h3>
-                            <img 
+                            <img
                                 src={movie.poster} 
                                 alt={movie.title}
-                                onClick={() => routeToDetails(movie.id)}
                                 />
                         </div>
                     );

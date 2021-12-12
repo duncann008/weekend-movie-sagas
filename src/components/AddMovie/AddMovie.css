@@ -3,14 +3,34 @@
     width: 50%;
 }
 
-input[type=text], select {
-    width: 100%;
+input[type=text], textarea  {
+    font-family: sans-serif;
+    width: 95%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+}
+
+textarea  {
+    resize: vertical;
+}
+
+select {
+    text-align: center;
+    width: 30%;
+    padding: 4px 6px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+label {
+    text-align: left;
 }
   
 .previewDiv {
@@ -22,6 +42,35 @@ input[type=text], select {
 }
   
 h2  {
-   display: inline-block;
+    display: inline-block;
     width: 50%;
 }
+
+.saveButton {
+    color: white;
+    border-radius: 5%;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: green;
+}
+
+.saveButton:hover {
+    background-color: #45a049;
+  }
+
+.cancelButton {
+    margin: 5px;
+    color: white;
+    border-radius: 5%;
+    margin: 5px;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: red;
+}
+
+.cancelButton:hover {
+    background-color: rgb(161, 31, 31);
+  }

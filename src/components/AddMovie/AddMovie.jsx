@@ -69,34 +69,37 @@ function AddMovie() {
 
     return (
         <div>
-        <h1>Add A Movie!</h1>
-        <div className="addMovieForm">
-        <h2>Movie Info:</h2>
-          <form onSubmit={saveButton}>
-            Title: <input type="text" onChange={handleTitleAdd} placeholder="Title"/><br />
-            Poster URL: <input type="text" onChange={handlePosterAdd} placeholder="Movie poster image URL"/><br />
-            Description: <textarea type="text" onChange={handleDescriptionAdd} placeholder="Movie Description"/><br />          
-            <select onChange={(event) => handleGenreAdd(event)}>
-                <option>Pick A Genre</option>
-                {genres.map((genre) =>  {
-                    return  (
-                        <option key={genre.id} value={genre.id}>{genre.name}</option>
-                    )
-                })}
-            </select><br />
-        <button>Save</button>
-      </form>
-      <button onClick={() => cancelButton(event)}>Cancel</button>
-    </div>
-    <div>
-      <h2>Preview:</h2>
-      <div className="previewDiv">
-        <p>{movieToAdd.title}</p>
-        <img src={movieToAdd.poster} className="previewImage"/>
-        <p>{movieToAdd.description}</p>
-      </div>
-    </div>
-    </div>          
+          <h1>Add A Movie!</h1>
+          <div className="addMovieForm">
+            <h2>Movie Info:</h2>
+            <form onSubmit={saveButton}>
+              <label for="title">Title</label>
+              <input type="text" id="title" onChange={handleTitleAdd} placeholder="Title"/><br />
+              <label for="PosterURL">Poster URL</label>
+              <input type="text" id="PosterURL" onChange={handlePosterAdd} placeholder="Movie poster image URL"/><br />
+              <label for="description">Description</label>
+              <textarea type="text" id="description" onChange={handleDescriptionAdd} placeholder="Movie Description"/><br />          
+                <select onChange={(event) => handleGenreAdd(event)}>
+                    <option>Pick A Genre</option>
+                    {genres.map((genre) =>  {
+                        return  (
+                            <option key={genre.id} value={genre.id}>{genre.name}</option>
+                        )
+                    })}
+                </select><br />
+            <button className="saveButton" type="submit">Save</button>
+            </form>
+            <button className="cancelButton" onClick={() => cancelButton(event)}>Cancel</button>
+          </div>
+          <div>
+            <h2>Preview:</h2>
+            <div className="previewDiv">
+              <p>{movieToAdd.title}</p>
+              <img src={movieToAdd.poster} className="previewImage"/>
+              <p>{movieToAdd.description}</p>
+            </div>
+          </div>
+        </div>          
     );
 }
 
