@@ -12,6 +12,8 @@ function Details(){
 
     const singleMovieTitle = [];
     const singleMovieDescription = [];
+    const singleMoviePoster = [];
+
     singleMovie.map(movie => {
         return (
             singleMovieTitle.push(movie.title)
@@ -20,6 +22,11 @@ function Details(){
     singleMovie.map(movie => {
         return (
             singleMovieDescription.push(movie.description)
+        )})
+
+    singleMovie.map(movie => {
+        return (
+            singleMoviePoster.push(movie.poster)
         )})
 
     const backToListButton = () =>  {
@@ -31,6 +38,7 @@ function Details(){
         <div>
             <h1>Details</h1>
             <p>{singleMovieTitle[0]}</p>
+            <img src={singleMoviePoster[0]} />
             <p>{singleMovieDescription[0]}</p>
             <p>
                 <div className="genre">Genres:</div>
