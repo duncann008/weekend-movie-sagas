@@ -16,6 +16,30 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/:id', (req,res) => {
+
+  const singleMovieID = req.params.id
+  console.log('router GET id =', req.params.id);
+  const query =
+    `
+      SELECT "movies"."title", "movies"."description", "genres"."name" FROM "movies_genres"
+        JOIN "movies"
+          ON "movies"."id"="movies_genres"."movie_id"
+        JOIN "genres"
+          ON "genres"."id"="movies_genres"."genre_id"
+        WHERE "movies"."id"=${singleMovieID}
+      `;
+  pool.query(query)
+    .then( (result) => {
+      console.log('router GET id db result =', result.rows);
+      res.send(result.rows);
+    })
+    .catch(err => {
+      console.log('ERROR: Get single movie', err);
+      res.sendStatus(500)
+    })
+})
+
 router.post('/', (req, res) => {
   console.log(req.body);
   // RETURNING "id" will give us back the id of the created movie

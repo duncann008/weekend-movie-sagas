@@ -16,6 +16,7 @@ function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
     yield takeEvery('ADD_MOVIE', addMovie);
+    yield takeEvery('FETCH_SINGLE_MOVIE', fetchSingleMovie);
 }
 
 function* fetchAllMovies() {
@@ -28,9 +29,24 @@ function* fetchAllMovies() {
     } catch {
         console.log('get all error');
     }
-        
 }
 
+// For getting details on click
+function* fetchSingleMovie(action) {
+    try {
+        console.log(action.payload);
+        const singleMovieID = action.payload
+        const singleMovie = yield axios.get(`/api/movie/${singleMovieID}`)
+        yield put({
+            type: 'SET_SINGLE_MOVIE',
+            payload: singleMovie.data
+        })
+    } catch (err) {
+        console.log('get single error', err);
+    }
+}
+
+// For genre selection
 function* fetchGenres() {
     try {
         const genres = yield axios.get('/api/genre');
@@ -42,10 +58,11 @@ function* fetchGenres() {
     }
 }
 
+// Adding a movie
 function* addMovie(action)  {
     console.log('POSTING:', action.payload)
     try {
-        const newMovie = yield axios({
+        yield axios({
             method: 'POST',
             url: '/api/movie',
             data: action.payload
@@ -81,20 +98,21 @@ const genres = (state = [], action) => {
     }
 }
 
-// const addMovie = (state = [], action) => {
-//     switch (action.type) {
-//         case 'ADD_MOVIE':
-//             return action.payload;
-//         default:
-//             return state;
-//     }
-// }
+const singleMovie = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SINGLE_MOVIE':
+            return action.payload ;
+        default:
+            return state;
+    }
+}
 
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        singleMovie
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),

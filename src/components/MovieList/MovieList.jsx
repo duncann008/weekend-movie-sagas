@@ -17,6 +17,14 @@ function MovieList() {
         history.push('/AddMovie');
     }
 
+    const routeToDetails = (id) => {
+        dispatch({
+            type: 'FETCH_SINGLE_MOVIE',
+            payload:id
+        });
+        history.push('/details')
+    }
+
     return (
         <main>
             <h1>MovieList</h1>
@@ -26,7 +34,11 @@ function MovieList() {
                     return (
                         <div key={movie.id} >
                             <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
+                            <img 
+                                src={movie.poster} 
+                                alt={movie.title}
+                                onClick={() => routeToDetails(movie.id)}
+                                />
                         </div>
                     );
                 })}
