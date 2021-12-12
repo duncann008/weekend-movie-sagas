@@ -27,12 +27,12 @@ function MovieList() {
 
     return (
         <main>
-            <h1>MovieList</h1>
+            <h1>Movie List</h1>
             <button onClick={goToForm}>Add Movie</button>
             <section className="movies">
                 {movies.map(movie => {
                     return (
-                        <div key={movie.id} >
+                        <div className="movieListDiv" key={movie.id} >
                             <h3>{movie.title}</h3>
                             <img 
                                 src={movie.poster} 

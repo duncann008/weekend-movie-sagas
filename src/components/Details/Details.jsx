@@ -36,10 +36,8 @@ function Details(){
     return (
         
         <div>
-            <h1>Details</h1>
-            <p>{singleMovieTitle[0]}</p>
+            <h1>{singleMovieTitle[0]}</h1>
             <img src={singleMoviePoster[0]} />
-            <p>{singleMovieDescription[0]}</p>
             <p>
                 <div className="genre">Genres:</div>
                 {singleMovie.map(singleMovie => {
@@ -50,7 +48,9 @@ function Details(){
                 )
             })}
             </p>
-            <button onClick={backToListButton}>HOME</button>
+            <p>{singleMovieDescription[0]}</p>
+            
+            <button onClick={backToListButton} className="homeButton">HOME</button>
         </div>
     )
 }

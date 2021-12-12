@@ -4,7 +4,21 @@ body {
   font-family: sans-serif;
 }
 
+.movieListDiv {
+  display: inline-block;
+  white-space: nowrap;
+  width: 30%;
+  margin: 10px;
+  border: none;
+  margin-top: 20px;
+}
+
 .genre  {
   display: inline-block;
   width: 10%;
 }
+
+.homeButton {
+  margin-top: 10px;
+}
+
