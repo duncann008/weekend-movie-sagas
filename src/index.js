@@ -15,6 +15,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_GENRES', fetchGenres);
+    yield takeEvery('ADD_MOVIE', addMovie);
 }
 
 function* fetchAllMovies() {
@@ -35,6 +36,22 @@ function* fetchGenres() {
         const genres = yield axios.get('/api/genre');
         console.log('get all:', genres.data);
         yield put({ type: 'SET_GENRES', payload: genres.data });
+
+    } catch {
+        console.log('get all error');
+    }
+}
+
+function* addMovie(action)  {
+    console.log('POSTING:', action.payload)
+    try {
+        const newMovie = yield axios({
+            method: 'POST',
+            url: '/api/movie',
+            data: action.payload
+        })
+        
+        yield put({ type: 'FETCH_MOVIES' });
 
     } catch {
         console.log('get all error');
@@ -63,6 +80,15 @@ const genres = (state = [], action) => {
             return state;
     }
 }
+
+// const addMovie = (state = [], action) => {
+//     switch (action.type) {
+//         case 'ADD_MOVIE':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
 
 // Create one store that all components can use
 const storeInstance = createStore(

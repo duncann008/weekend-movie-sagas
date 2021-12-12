@@ -9,7 +9,7 @@ function AddMovie() {
     const genres = useSelector(store => store.genres);
     const history = useHistory();
 
-    const [movieToAdd, setMovieToAdd] = useState({title: '', url: '', description: '', genreId: 0});
+    const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre_id: 0});
 
     const handleTitleAdd = (event) => {
         setMovieToAdd({
@@ -18,10 +18,10 @@ function AddMovie() {
         });
       }
     
-      const handleUrlAdd = (event) => {
+      const handlePosterAdd = (event) => {
         setMovieToAdd({
           ...movieToAdd,
-          url: event.target.value,
+          poster: event.target.value,
         });
       }
     
@@ -35,7 +35,7 @@ function AddMovie() {
       const handleGenreAdd = (event) => {
         setMovieToAdd({
           ...movieToAdd,
-          genreId: event.target.value,
+          genre_id: event.target.value,
         });
         console.log(movieToAdd);
       }
@@ -48,6 +48,10 @@ function AddMovie() {
     }, []); 
 
     const saveButton = () =>  {
+        dispatch({
+            type: 'ADD_MOVIE',
+            payload: movieToAdd
+        })
         // history.push('/');
         console.log(movieToAdd);
     }
@@ -61,9 +65,9 @@ function AddMovie() {
         <h1>Add A Movie!</h1>
         <form onSubmit={saveButton}>
             <input onChange={handleTitleAdd} placeholder="Title"/><br />
-            <input onChange={handleUrlAdd} placeholder="Movie poster image URL"/><br />
+            <input onChange={handlePosterAdd} placeholder="Movie poster image URL"/><br />
             <textarea onChange={handleDescriptionAdd} placeholder="Movie Description"/><br />          
-            <select  onChange={(event) => handleGenreAdd(event)}>
+            <select onChange={(event) => handleGenreAdd(event)}>
                 <option disabled value='0'>Pick A Genre</option>
                 {genres.map((genre) =>  {
                     return  (
