@@ -52,7 +52,7 @@ function AddMovie() {
             type: 'ADD_MOVIE',
             payload: movieToAdd
         })
-        // history.push('/');
+        history.push('/');
         console.log(movieToAdd);
     }
 
