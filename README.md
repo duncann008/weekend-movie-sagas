@@ -1,9 +1,13 @@
-# Project Name
-
-[Project Instructions](./INSTRUCTIONS.md), this line may be removed once you have updated the README.md
+# Weekend Movie Sagas
 
 ## Description
 
-Your project description goes here. What problem did you solve? How did you solve it?
+Updated the provided code to use sagas and added features for the user.
 
-Additional README details can be found [here](https://github.com/PrimeAcademy/readme-template/blob/master/README.md).
+### How I went about my work:
+
+1.  Always initialize first:  npm install and split my terminal to npm run server and npm run client.
+
+2.  I like to have my components set up and routed before diving any deeper.
+
+    *   Made folders and files for each component I'd need.
