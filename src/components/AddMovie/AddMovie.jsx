@@ -47,12 +47,22 @@ function AddMovie() {
       }, []); 
 
       const saveButton = () =>  {
+        if (movieToAdd.title === '' ||
+            movieToAdd.poster === '' ||
+            movieToAdd.description === ''
+        ) {
+          alert('Please fill out all of the input fields.')
+        } 
+        else if (movieToAdd.genre_id === 0) {
+          alert('Please select a genre.')
+        }
+        else  {        
           dispatch({
               type: 'ADD_MOVIE',
               payload: movieToAdd
           })
           history.push('/');
-          console.log(movieToAdd);
+        }
       }
 
       const cancelButton = () =>  {
@@ -74,11 +84,11 @@ function AddMovie() {
             <h2>Movie Info:</h2>
             <form onSubmit={saveButton}>
               <label for="title">Title</label>
-              <input type="text" id="title" onChange={handleTitleAdd} placeholder="Title"/><br />
+              <input type="text" id="title" onChange={handleTitleAdd} placeholder="Title" /><br />
               <label for="PosterURL">Poster URL</label>
-              <input type="text" id="PosterURL" onChange={handlePosterAdd} placeholder="Movie poster image URL"/><br />
+              <input type="text" id="PosterURL" onChange={handlePosterAdd} placeholder="Movie poster image URL" /><br />
               <label for="description">Description</label>
-              <textarea type="text" id="description" onChange={handleDescriptionAdd} placeholder="Movie Description"/><br />          
+              <textarea type="text" id="description" onChange={handleDescriptionAdd} placeholder="Movie Description" /><br />          
                 <select onChange={(event) => handleGenreAdd(event)}>
                     <option>Pick A Genre</option>
                     {genres.map((genre) =>  {
@@ -89,7 +99,7 @@ function AddMovie() {
                 </select><br />
             <button className="saveButton" type="submit">Save</button>
             </form>
-            <button className="cancelButton" onClick={() => cancelButton(event)}>Cancel</button>
+            <button className="cancelButton" onClick={(event) => cancelButton(event)}>Cancel</button>
           </div>
           <div>
             <h2>Preview:</h2>
