@@ -28,7 +28,7 @@ function MovieList() {
     return (
         <main>
             <h1>Movie List</h1>
-            <button onClick={goToForm}>+ Add Movie</button>
+            <button className="addButton" onClick={goToForm}>+ Add Movie</button>
             <section className="movies">
                 {movies.map(movie => {
                     return (
