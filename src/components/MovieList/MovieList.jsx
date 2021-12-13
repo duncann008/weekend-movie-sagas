@@ -8,15 +8,16 @@ function MovieList() {
     const dispatch = useDispatch();
     const movies = useSelector(store => store.movies);
     const history = useHistory();
-
+    // Renders the movies on page load
     useEffect(() => {
         dispatch({ type: 'FETCH_MOVIES' });
     }, []);
 
+    // Gets us to the Add a Movie form
     const goToForm = () =>  {
         history.push('/AddMovie');
     }
-
+    // Gets us to Details for the clicked movie
     const routeToDetails = (id) => {
         dispatch({
             type: 'FETCH_SINGLE_MOVIE',

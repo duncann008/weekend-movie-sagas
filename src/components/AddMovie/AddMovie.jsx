@@ -10,6 +10,7 @@ function AddMovie() {
     const genres = useSelector(store => store.genres);
     const history = useHistory();
 
+    // State for our dispatch payload
     const [movieToAdd, setMovieToAdd] = useState({title: '', poster: '', description: '', genre_id: 0});
 
     const handleTitleAdd = (event) => {
@@ -41,11 +42,12 @@ function AddMovie() {
       }
 
     
-
+      // GETs us the genres in the dropdown
       useEffect(() => {
           dispatch({ type: 'FETCH_GENRES' })
       }, []); 
 
+      // Conditional for input validation, then dispatches payload to index.js and routes to home page
       const saveButton = () =>  {
         if (movieToAdd.title === '' ||
             movieToAdd.poster === '' ||
@@ -65,9 +67,10 @@ function AddMovie() {
         }
       }
 
+      // Confirm option to route back to home page or continue adding movie
       const cancelButton = () =>  {
           console.log('clicked Cancel');
-          let okay = confirm("If you cancel, you will lose all of your progress.");
+          let okay = confirm("If you cancel, you will lose all of your progress. Click OK to redirect to the home page or Cancel to continue adding a movie.");
           if (okay === true)   {
             history.push('/');
             console.log('Cancel');

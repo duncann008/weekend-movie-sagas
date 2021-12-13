@@ -1,0 +1,22 @@
+.description  {
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: left;
+    text-indent: 50px;
+}
+
+.genre  {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.genresColon  {
+    display: inline-block;
+    padding-right: 14px;
+}
+  
+.homeButton {
+    margin-top: 10px;
+}
+  
